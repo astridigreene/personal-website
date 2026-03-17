@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light: white, off-white, icy/light blue, steel blue, navy accents */
+:root {
+  --background: 210 25% 98%;
+  --foreground: 215 25% 12%;
+  --muted: 215 15% 42%;
+  --accent: 208 70% 38%;
+  --accent-muted: 208 45% 52%;
+  --surface: 0 0% 100%;
+  --surface-elevated: 210 30% 97%;
+  --border: 214 25% 90%;
+  --ice: 205 40% 95%;
+  --steel: 212 30% 88%;
+  --navy: 215 45% 22%;
+}
+
+.dark {
+  --background: 218 28% 10%;
+  --foreground: 210 20% 96%;
+  --muted: 214 15% 58%;
+  --accent: 208 70% 58%;
+  --accent-muted: 208 50% 48%;
+  --surface: 218 24% 13%;
+  --surface-elevated: 218 22% 16%;
+  --border: 215 20% 22%;
+  --ice: 215 25% 18%;
+  --steel: 215 20% 24%;
+  --navy: 215 40% 35%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--surface));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--steel));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted) / 0.6);
+}
+
+/* Section background variants */
+.section-default {
+  background: hsl(var(--background));
+}
+
+.section-alt {
+  background: linear-gradient(180deg, hsl(var(--ice)) 0%, hsl(var(--background)) 100%);
+}
+
+.dark .section-alt {
+  background: linear-gradient(180deg, hsl(var(--ice)) 0%, hsl(var(--background)) 100%);
+}
+
+.dark .section-navy {
+  background: linear-gradient(160deg, hsl(var(--navy)) 0%, hsl(215 45% 14%) 100%);
+}
+
+.section-elevated {
+  background: hsl(var(--surface-elevated));
+}
+
+.section-navy {
+  background: linear-gradient(160deg, hsl(var(--navy)) 0%, hsl(215 45% 18%) 100%);
+  color: hsl(210 20% 96%);
+}
+
+.section-navy .text-muted {
+  color: hsl(214 20% 75%);
+}
