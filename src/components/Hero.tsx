@@ -41,7 +41,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--steel)/0.15)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--steel)/0.15)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,black,transparent)]" />
       </div>
 
-      <div className="flex-1 flex items-center justify-center mx-auto max-w-5xl px-6 text-center relative w-full">
+      <div className="flex-1 flex flex-col items-center justify-center mx-auto max-w-5xl px-6 text-center relative w-full">
         <div className="flex flex-col md:flex-row md:items-center md:gap-16 md:text-left">
           <motion.div
             variants={container}
@@ -130,23 +130,24 @@ export function Hero() {
           </motion.div>
         </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="flex flex-col items-center gap-2 py-12 shrink-0"
-      >
-        <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--muted)/0.9)]">
-          Scroll
-        </span>
         <motion.div
-          className="w-5 h-8 rounded-full border border-[hsl(var(--muted)/0.4)] flex justify-center pt-1.5"
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
+          className="flex flex-col items-center gap-2 py-12 shrink-0"
         >
-          <motion.div className="w-1 h-1 rounded-full bg-accent/80" />
+          <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[hsl(var(--muted)/0.9)]">
+            Scroll
+          </span>
+          <motion.div
+            className="w-5 h-8 rounded-full border border-[hsl(var(--muted)/0.4)] flex justify-center pt-1.5"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <motion.div className="w-1 h-1 rounded-full bg-accent/80" />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
