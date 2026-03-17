@@ -1,12 +1,8 @@
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { Education } from "@/components/Education";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
-import { Research } from "@/components/Research";
-import { Leadership } from "@/components/Leadership";
-import { Skills } from "@/components/Skills";
-import { Resume } from "@/components/Resume";
+import { Extras } from "@/components/Extras";
 import { Contact } from "@/components/Contact";
 
 export default function Home() {
@@ -14,13 +10,9 @@ export default function Home() {
     <>
       <Hero />
       <About />
-      <Education />
       <Experience />
       <Projects />
-      <Research />
-      <Leadership />
-      <Skills />
-      <Resume />
+      <Extras />
       <Contact />
     </>
   );

@@ -8,9 +8,7 @@ export const site = {
     "Computer Science at the University of Michigan — software, AI, and machine learning.",
   currently:
     "Currently at Michigan studying CS and working on side projects in C++, Python, and web.",
-  // Path to headshot in public folder (e.g. /images/Astrid_Greene_Headshot.jpeg)
-  headshot: "/images/Astrid_Greene_Headshot.jpeg",
-  // Resume PDF in public folder or external URL
+  headshot: "/images/headshot.jpeg",
   resumeUrl: "/resume/resume.pdf",
 } as const;
 
@@ -38,9 +36,7 @@ export const education = {
 } as const;
 
 export const about = {
-  bio: `I study computer science at the University of Michigan. I like the low-level side of things: data structures, algorithms, systems, and writing code that actually does what it's supposed to. I also like building stuff people can use, from small tools to larger projects.
-
-I've worked on order-matching engines, classifiers, full-stack apps, and research. Outside of coding I've led small teams and run events. I'd rather ship something with others than optimize in a corner by myself.`,
+  bio: `I study computer science at the University of Michigan, focusing on data structures, algorithms, and systems. I build software across C++ and Python, from low-level implementations to full-stack applications.`,
 } as const;
 
 export const experiences = [
@@ -65,16 +61,6 @@ export const experiences = [
     bullets: [
       "Designed technical requirements for an internal AI policy chatbot using retrieval-augmented generation (RAG), including document ingestion, embedding, vector search, and source attribution",
       "Evaluated data quality, access control, and update workflows to ensure accurate, auditable, and maintainable AI responses from sanctioned policy sources",
-    ],
-  },
-  {
-    id: "um-mlc",
-    company: "University of Michigan Math Learning Center",
-    role: "Proctor",
-    location: "Ann Arbor, MI",
-    period: "Jan 2025 – Present",
-    bullets: [
-      "Monitored computer performance, reported bugs, verified student identities, and coordinated exam sign-in for 25–30 students per session to ensure exam security and comfort",
     ],
   },
   {
@@ -118,14 +104,14 @@ export const projects = [
       "O(log n) trade matching efficiency",
     ],
     tools: ["C++", "Priority Queues", "Data Structures"],
-    featured: true,
+    featured: false,
     githubUrl: null as string | null,
     liveUrl: null as string | null,
   },
   {
     id: "personal-website",
     title: "Personal Website",
-    date: "2025",
+    date: "March 2026",
     description:
       "Personal portfolio built with modern web tooling. Responsive layout, scroll and interaction-driven animation, and structured sections for experience, projects, and contact.",
     highlights: [
@@ -134,14 +120,14 @@ export const projects = [
       "Structured content sections with clear hierarchy",
     ],
     tools: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    featured: false,
+    featured: true,
     githubUrl: "https://github.com/astridigreene/personal-website",
-    liveUrl: null as string | null, // Set to your deployed URL when live (e.g. "https://astridgreene.com")
+    liveUrl: null as string | null,
   },
   {
     id: "sudoku-solver",
     title: "Sudoku Solver",
-    date: "Fall 2025",
+    date: "November 2025",
     description:
       "C++ solver for 9x9 Sudoku. Represents the board as a 9x9 grid, validates rows, columns, and 3x3 boxes, tracks candidate values for open cells, and solves via repeated constraint checks and possibility elimination.",
     highlights: [
@@ -151,7 +137,7 @@ export const projects = [
     ],
     tools: ["C++", "STL", "chrono"],
     featured: false,
-    githubUrl: null as string | null,
+    githubUrl: "https://github.com/astridigreene/sudoku-solver",
     liveUrl: null as string | null,
   },
   {
@@ -196,19 +182,10 @@ export const projects = [
     ],
     tools: ["Python", "turtle"],
     featured: false,
-    githubUrl: null as string | null,
+    githubUrl: "https://github.com/astridigreene/tic-tac-toe",
     liveUrl: null as string | null,
   },
 ] as const;
-
-export const research = {
-  title: "Debunking The Curse of Dimensionality in a K-Nearest Neighbors Classification Problem",
-  institution: "Morgan State University",
-  period: "June 2023 – Aug 2023",
-  summary:
-    "Co-authored research on k-NN and the curse of dimensionality. Designed and ran Python experiments on datasets with 1000+ points, varying k and dimensions from 2D to 15D. Used NumPy, Scikit-learn, and Matplotlib for data generation, training, and visualization. Selected as Semi-Finalist in the Junior Science and Humanities Symposium.",
-  keywords: ["k-NN", "Curse of Dimensionality", "Classification", "Python", "Scikit-learn"],
-} as const;
 
 export const leadership = {
   title: "Notre Dame Student Art Exhibition",
@@ -221,9 +198,28 @@ export const leadership = {
   ],
 } as const;
 
-export const activities = [
-  "Girls in Electrical Engineering and Computer Science",
-  "Tech Plus Consulting",
+export const extracurriculars = [
+  {
+    id: "geecs",
+    name: "Girls in Electrical Engineering and Computer Science",
+    shortName: "GEECS",
+    role: "Member",
+    description: "Community for women and non-binary students in EECS.",
+  },
+  {
+    id: "eecs201",
+    name: "EECS 201",
+    shortName: "Instructional Aide",
+    role: "Instructional Aide",
+    description: "Support for Computer Organization coursework.",
+  },
+  {
+    id: "math-proctor",
+    name: "University of Michigan Math Learning Center",
+    shortName: "Math Exam Proctor",
+    role: "Proctor",
+    description: "Monitor exam sessions, verify identities, and coordinate sign-in for 25–30 students per session.",
+  },
 ] as const;
 
 export const skills = {
@@ -240,6 +236,13 @@ export const skills = {
 
 export const resumeSummary =
   "BS Computer Science (Minor: French) at University of Michigan. Experience in full-stack development, technical analysis, RAG systems, and research. Strong foundation in data structures, algorithms, and ML.";
+
+export const resumeHighlights = [
+  "B.S. Computer Science, Minor in French, University of Michigan",
+  "Full-stack and systems-level development",
+  "Research and data-driven projects",
+  "Data structures, algorithms, and ML",
+] as const;
 
 export const contactCta =
   "Open to internships, research opportunities, and collaborative projects. Get in touch below.";

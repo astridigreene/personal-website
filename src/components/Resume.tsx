@@ -2,26 +2,21 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { site, resumeSummary, education } from "@/lib/site-data";
+import { site, resumeSummary, resumeHighlights } from "@/lib/site-data";
 
 export function Resume() {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.2 });
 
-  const highlights = [
-    `${education.degree} at ${education.school}`,
-    "Technical analysis & RAG systems",
-    "Research & full-stack development",
-    "Data structures, algorithms, ML",
-  ];
+  const highlights = resumeHighlights;
 
   return (
     <section id="resume" className="scroll-mt-24 section-navy py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">

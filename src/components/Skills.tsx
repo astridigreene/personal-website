@@ -18,9 +18,9 @@ export function Skills() {
     <section id="skills" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">

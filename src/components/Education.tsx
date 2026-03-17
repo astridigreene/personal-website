@@ -12,9 +12,9 @@ export function Education() {
     <section id="education" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
@@ -26,10 +26,11 @@ export function Education() {
         </motion.header>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
+          whileHover={{ boxShadow: "0 16px 40px -12px rgba(0,0,0,0.1)" }}
         >
           <p className="text-xl font-semibold text-[hsl(var(--foreground))]">
             {education.degree}

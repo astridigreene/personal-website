@@ -60,9 +60,9 @@ export function Projects() {
     <section id="projects" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 44 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
@@ -76,18 +76,19 @@ export function Projects() {
         <div className="space-y-10">
           {featured && (
             <motion.article
-              initial={{ opacity: 0, y: 32 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 48, filter: "blur(6px)" }}
+              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="group"
             >
               <motion.div
                 className="rounded-2xl border-2 border-accent/30 bg-[hsl(var(--surface-elevated))] p-6 md:p-8 shadow-soft"
                 whileHover={{
+                  y: -6,
                   borderColor: "hsl(var(--accent) / 0.5)",
-                  boxShadow: "0 0 50px -12px hsl(var(--accent) / 0.2)",
+                  boxShadow: "0 28px 56px -16px hsl(var(--accent) / 0.25)",
                 }}
-                transition={{ duration: 0.3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 24 }}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-3">
                   <span className="text-xs font-semibold uppercase tracking-wider text-accent">
@@ -126,11 +127,11 @@ export function Projects() {
             {others.map((proj, index) => (
               <motion.article
                 key={proj.id}
-                initial={{ opacity: 0, y: 28 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
+                initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
+                animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
                 transition={{
-                  duration: 0.5,
-                  delay: 0.15 + index * 0.08,
+                  duration: 0.65,
+                  delay: 0.15 + index * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 className="group"
@@ -138,11 +139,12 @@ export function Projects() {
                 <motion.div
                   className="h-full rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 shadow-soft"
                   whileHover={{
-                    y: -4,
-                    boxShadow: "0 12px 40px -12px rgba(0,0,0,0.15)",
-                    borderColor: "hsl(var(--accent) / 0.3)",
+                    y: -8,
+                    boxShadow: "0 24px 48px -12px rgba(0,0,0,0.18)",
+                    borderColor: "hsl(var(--accent) / 0.35)",
+                    scale: 1.01,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 26 }}
                 >
                   <span className="text-sm text-[hsl(var(--muted))]">{proj.date}</span>
                   <h3 className="mt-2 text-xl font-semibold text-[hsl(var(--foreground))]">

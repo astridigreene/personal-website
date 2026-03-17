@@ -24,9 +24,9 @@ export function Contact() {
     <section id="contact" className="scroll-mt-24 section-alt py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.header
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 44 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
@@ -39,10 +39,11 @@ export function Contact() {
 
         <div className="grid md:grid-cols-2 gap-10 md:gap-12">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -36 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
+            whileHover={{ boxShadow: "0 20px 50px -15px rgba(0,0,0,0.1)" }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--muted))] mb-5">
               Get in touch
@@ -67,10 +68,11 @@ export function Contact() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 36 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
+            whileHover={{ boxShadow: "0 20px 50px -15px rgba(0,0,0,0.1)" }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--muted))] mb-5">
               Send a message
