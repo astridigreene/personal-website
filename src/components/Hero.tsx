@@ -90,16 +90,10 @@ export function Hero() {
               >
                 {site.tagline}
               </motion.p>
-              <motion.p
-                variants={item}
-                className="mt-3 text-sm md:text-base text-[hsl(var(--muted))] max-w-lg md:mx-0 mx-auto"
-              >
-                {site.currently}
-              </motion.p>
 
               <motion.div
                 variants={item}
-                className="mt-10 flex flex-wrap gap-4 justify-center md:justify-start"
+                className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start"
               >
                 <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
                   <Link
@@ -111,7 +105,7 @@ export function Hero() {
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
                   <Link
-                    href="#extras"
+                    href="#resume"
                     className="inline-flex items-center justify-center rounded-xl border-2 border-[hsl(var(--border))] bg-[hsl(var(--surface))] px-6 py-3.5 text-sm font-semibold text-[hsl(var(--foreground))] hover:border-accent/50 hover:bg-ice transition-colors"
                   >
                     Resume

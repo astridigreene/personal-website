@@ -17,7 +17,7 @@ export function Extracurriculars() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="text-xl font-semibold text-[hsl(var(--foreground))] mb-6"
         >
-          Campus involvement
+          Campus Involvement
         </motion.h3>
         <div className="grid gap-4 sm:grid-cols-3">
           {extracurriculars.map((item, i) => (

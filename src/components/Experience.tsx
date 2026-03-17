@@ -73,9 +73,9 @@ export function Experience() {
                     {exp.bullets.map((bullet, i) => (
                       <li
                         key={i}
-                        className="text-sm text-[hsl(var(--foreground))] leading-relaxed flex gap-3"
+                        className="text-sm text-[hsl(var(--foreground))] leading-relaxed flex items-start gap-3"
                       >
-                        <span className="text-accent mt-1.5 shrink-0">→</span>
+                        <span className="text-accent mt-0.5 shrink-0">→</span>
                         <span>{bullet}</span>
                       </li>
                     ))}

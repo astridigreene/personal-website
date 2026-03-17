@@ -102,9 +102,9 @@ export function Projects() {
                 <p className="mt-3 text-[hsl(var(--muted))] text-lg">{featured.description}</p>
                 <ul className="mt-5 space-y-2">
                   {featured.highlights.map((h, i) => (
-                    <li key={i} className="text-[hsl(var(--foreground))] flex gap-2">
-                      <span className="text-accent shrink-0">→</span>
-                      {h}
+                    <li key={i} className="text-[hsl(var(--foreground))] flex items-start gap-2">
+                      <span className="text-accent mt-0.5 shrink-0">→</span>
+                      <span>{h}</span>
                     </li>
                   ))}
                 </ul>
@@ -155,8 +155,9 @@ export function Projects() {
                   </p>
                   <ul className="mt-4 space-y-1">
                     {proj.highlights.map((h, i) => (
-                      <li key={i} className="text-sm text-[hsl(var(--foreground))]">
-                        {h}
+                      <li key={i} className="text-sm text-[hsl(var(--foreground))] flex items-start gap-2">
+                        <span className="text-accent mt-0.5 shrink-0">→</span>
+                        <span>{h}</span>
                       </li>
                     ))}
                   </ul>

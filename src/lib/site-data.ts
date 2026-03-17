@@ -5,9 +5,7 @@
 export const site = {
   name: "Astrid Greene",
   tagline:
-    "Computer Science at the University of Michigan — software, AI, and machine learning.",
-  currently:
-    "Currently at Michigan studying CS and working on side projects in C++, Python, and web.",
+    "Computer Science at the University of Michigan, focused on software engineering and machine learning.",
   headshot: "/images/headshot.jpeg",
   resumeUrl: "/resume/resume.pdf",
 } as const;
@@ -186,17 +184,6 @@ export const projects = [
     liveUrl: null as string | null,
   },
 ] as const;
-
-export const leadership = {
-  title: "Notre Dame Student Art Exhibition",
-  role: "Founder & Director",
-  period: "Apr 2023 & Apr 2024",
-  bullets: [
-    "Founded and directed an annual pop-up art exhibition featuring 30 student artists",
-    "Drew over 200 attendees each year",
-    "Raised and donated $1,000+ in proceeds to Art Start and 350.org",
-  ],
-} as const;
 
 export const extracurriculars = [
   {
