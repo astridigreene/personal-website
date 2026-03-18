@@ -97,7 +97,7 @@ export const projects = [
     date: "Oct 2025",
     sortDate: "2025-10-15",
     description:
-      "Price-time-priority order-matching engine built with priority queues. Handles high throughput with O(log n) trade matching.",
+      "Built a price-time priority order-matching engine in C++ using priority queues to model bid and ask books. Achieves O(log n) complexity for both order insertion and matching, while enforcing strict price-time ordering to guarantee deterministic execution. The design focuses on efficient data structures and predictable performance under sustained, high-frequency order flow.",
     highlights: [
       "Processed 1M+ orders and executed 760K+ trades in under 10 seconds",
       "74K+ orders/second throughput",
