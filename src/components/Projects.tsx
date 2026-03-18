@@ -209,14 +209,20 @@ export function Projects() {
             </motion.article>
           )}
 
+          {/*
+            items-start: opts cards out of CSS grid's default stretch behaviour.
+            Without it, the tallest card in each row sets the row height, and
+            h-full + flex-1 spacer push tools to the card bottom — creating a
+            visible dead-space gap on shorter cards. Content-sized cards have no gap.
+          */}
           <motion.div
             variants={staggerGridWrapper}
-            className="grid gap-6 sm:grid-cols-2"
+            className="grid gap-6 sm:grid-cols-2 items-start"
           >
             {others.map((proj) => (
-              <motion.article key={proj.id} variants={fadeUpScale} className="group h-full">
+              <motion.article key={proj.id} variants={fadeUpScale} className="group">
                 <motion.div
-                  className="h-full rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 flex flex-col"
+                  className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 flex flex-col"
                   initial="rest"
                   whileHover="hover"
                   animate="rest"
@@ -253,8 +259,6 @@ export function Projects() {
                       </li>
                     ))}
                   </ul>
-                  {/* Spacer: absorbs any grid-equalised height so tools+links stay pinned to the card bottom */}
-                  <div className="flex-1" aria-hidden />
                   <div className="mt-4 flex flex-wrap gap-2">
                     {proj.tools.map((t) => (
                       <motion.span
