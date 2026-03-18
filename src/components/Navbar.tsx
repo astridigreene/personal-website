@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 
 const navLinks = [
+  { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
@@ -21,17 +22,18 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
+    const headerLine = 100;
     const onScroll = () => {
       setScrolled(window.scrollY > 24);
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 120) {
-          setActiveId(sections[i]);
-          return;
+      const ids = navLinks.map((l) => l.href.slice(1));
+      let current = ids[0] ?? "home";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= headerLine) {
+          current = id;
         }
       }
-      setActiveId("");
+      setActiveId(current);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -50,7 +52,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="#" className="relative group">
+        <Link href="#home" className="relative group scroll-smooth">
           <span className="text-lg font-semibold text-[hsl(var(--foreground))] group-hover:text-accent transition-colors">
             AG
           </span>

@@ -244,7 +244,7 @@ export const resumeHighlights = [
 ] as const;
 
 export const contactCta =
-  "Open to internships, research opportunities, and collaborative projects. Get in touch below.";
+  "Open to internships, research opportunities, and collaborative projects.";
 
 export const currentFocus = [
   "Software engineering in C++ and Python",

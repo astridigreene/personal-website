@@ -24,7 +24,10 @@ const item = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden pt-20">
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col overflow-hidden pt-20 scroll-mt-0"
+    >
       {/* Animated background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-ice via-[hsl(var(--background))] to-[hsl(var(--background))]" />
