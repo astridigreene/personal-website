@@ -3,6 +3,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { about, education, currentFocus } from "@/lib/site-data";
+import {
+  inViewOnce,
+  sectionHeaderVariants,
+  sectionSublineVariants,
+  sectionReveal,
+  sectionStagger,
+} from "@/lib/motion-variants";
 
 export function About() {
   const ref = useRef(null);
@@ -16,27 +23,35 @@ export function About() {
   return (
     <section id="about" className="scroll-mt-24 section-alt py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
-            About
-          </h2>
-          <p className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl">
-            Background and focus.
-          </p>
-        </motion.header>
-
-        <div className="grid md:grid-cols-12 gap-10 md:gap-12">
-          <motion.div
-            initial={{ opacity: 0, y: 36, filter: "blur(6px)" }}
-            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-7"
+        <header className="mb-14">
+          <motion.h2
+            variants={sectionHeaderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight"
           >
+            About
+          </motion.h2>
+          <motion.p
+            variants={sectionSublineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl"
+          >
+            Background and focus.
+          </motion.p>
+        </header>
+
+        <motion.div
+          className="grid md:grid-cols-12 gap-10 md:gap-12"
+          variants={sectionStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={inViewOnce}
+        >
+          <motion.div variants={sectionReveal} className="md:col-span-7">
             <motion.div
               className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
               whileHover={{ boxShadow: "0 20px 50px -15px rgba(0,0,0,0.12)" }}
@@ -48,12 +63,7 @@ export function About() {
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 36, filter: "blur(6px)" }}
-            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-5 space-y-6"
-          >
+          <motion.div variants={sectionReveal} className="md:col-span-5 space-y-6">
             <motion.div
               className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 shadow-soft"
               whileHover={{ scale: 1.01, boxShadow: "0 12px 40px -12px rgba(0,0,0,0.1)" }}
@@ -98,7 +108,7 @@ export function About() {
               </ul>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

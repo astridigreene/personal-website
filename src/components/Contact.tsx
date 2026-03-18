@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { contact, contactCta } from "@/lib/site-data";
+import { inViewOnce, sectionHeaderVariants, sectionSublineVariants, tapScale } from "@/lib/motion-variants";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.1 });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
@@ -21,29 +19,52 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="scroll-mt-24 section-alt py-20 md:py-28" ref={ref}>
+    <section id="contact" className="scroll-mt-24 section-alt py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 44 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
+        <header className="mb-14">
+          <motion.h2
+            variants={sectionHeaderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight"
+          >
             Contact
-          </h2>
-          <p className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl">
+          </motion.h2>
+          <motion.p
+            variants={sectionSublineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl"
+          >
             {contactCta}
-          </p>
-        </motion.header>
+          </motion.p>
+        </header>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-12">
+        <motion.div
+          className="grid md:grid-cols-2 gap-10 md:gap-12"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={inViewOnce}
+        >
           <motion.div
-            initial={{ opacity: 0, x: -36 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            variants={{
+              hidden: { opacity: 0, x: -28, y: 12 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
             className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
-            whileHover={{ boxShadow: "0 20px 50px -15px rgba(0,0,0,0.1)" }}
+            whileHover={{ boxShadow: "0 24px 56px -18px hsl(var(--foreground) / 0.08)", y: -2 }}
+            transition={{ type: "spring", stiffness: 320, damping: 28 }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--muted))] mb-5">
               Get in touch
@@ -54,25 +75,35 @@ export function Contact() {
                   <span className="block text-xs font-medium text-[hsl(var(--muted))] mb-1">
                     {label}
                   </span>
-                  <a
+                  <motion.a
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="text-[hsl(var(--foreground))] font-medium hover:text-accent transition-colors"
+                    className="inline-block text-[hsl(var(--foreground))] font-medium hover:text-accent transition-colors"
+                    whileHover={{ x: 3, y: -1 }}
+                    whileTap={tapScale}
+                    transition={{ type: "spring", stiffness: 400, damping: 26 }}
                   >
                     {value}
-                  </a>
+                  </motion.a>
                 </li>
               ))}
             </ul>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 36 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            variants={{
+              hidden: { opacity: 0, x: 28, y: 12 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+              },
+            }}
             className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
-            whileHover={{ boxShadow: "0 20px 50px -15px rgba(0,0,0,0.1)" }}
+            whileHover={{ boxShadow: "0 24px 56px -18px hsl(var(--foreground) / 0.08)", y: -2 }}
+            transition={{ type: "spring", stiffness: 320, damping: 28 }}
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[hsl(var(--muted))] mb-5">
               Send a message
@@ -131,7 +162,7 @@ export function Contact() {
               </form>
             )}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

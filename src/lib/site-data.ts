@@ -43,7 +43,7 @@ export const experiences = [
     company: "Tech Plus Development Team",
     role: "Software Engineer",
     location: "Ann Arbor, MI",
-    period: "2025 – Present",
+    period: "Mar 2025 – Present",
     bullets: [
       "Built a full-stack club platform for Tech Plus serving 300+ members and about 20 clients. Multi-page responsive frontend and backend architecture with a Node/Express-style API, REST endpoints, auth, and scalable data models for members, projects, events, and attendance.",
       "Built an internal portal for 300+ users with auth, protected routes, and modular dashboards for member directory, alumni graph, project assignments, attendance, and resources.",
@@ -89,11 +89,13 @@ export const experiences = [
   },
 ] as const;
 
+/** sortDate: ISO YYYY-MM-DD for chronological ordering (display `date` stays human-readable) */
 export const projects = [
   {
     id: "order-book",
     title: "Order Book Simulator",
     date: "Oct 2025",
+    sortDate: "2025-10-15",
     description:
       "Price-time-priority order-matching engine built with priority queues. Handles high throughput with O(log n) trade matching.",
     highlights: [
@@ -110,6 +112,7 @@ export const projects = [
     id: "personal-website",
     title: "Personal Website",
     date: "March 2026",
+    sortDate: "2026-03-01",
     description:
       "Personal portfolio built with modern web tooling. Responsive layout, scroll and interaction-driven animation, and structured sections for experience, projects, and contact.",
     highlights: [
@@ -125,7 +128,8 @@ export const projects = [
   {
     id: "sudoku-solver",
     title: "Sudoku Solver",
-    date: "November 2025",
+    date: "Nov 2025",
+    sortDate: "2025-11-15",
     description:
       "C++ solver for 9x9 Sudoku. Represents the board as a 9x9 grid, validates rows, columns, and 3x3 boxes, tracks candidate values for open cells, and solves via repeated constraint checks and possibility elimination.",
     highlights: [
@@ -142,6 +146,7 @@ export const projects = [
     id: "naive-bayes",
     title: "Naive Bayes Text Classifier",
     date: "May 2025",
+    sortDate: "2025-05-01",
     description:
       "Multivariate Bernoulli naive Bayes classifier to classify posts by topic using log-probability scores.",
     highlights: [
@@ -157,6 +162,7 @@ export const projects = [
     id: "bst-map",
     title: "BST-Based Map Container",
     date: "June 2025",
+    sortDate: "2025-06-01",
     description:
       "Binary Search Tree with sorting invariants and an ordered Map ADT for efficient key-value storage.",
     highlights: [
@@ -172,6 +178,7 @@ export const projects = [
     id: "tic-tac-toe",
     title: "Tic-Tac-Toe",
     date: "Oct 2021",
+    sortDate: "2021-10-01",
     description:
       "Interactive tic-tac-toe game in Python using turtle graphics. Keyboard-controlled for both players.",
     highlights: [
@@ -184,6 +191,11 @@ export const projects = [
     liveUrl: null as string | null,
   },
 ] as const;
+
+/** Projects ordered by sortDate descending (most recent first). Use this for the Projects UI. */
+export const projectsByDateDesc = [...projects].sort((a, b) =>
+  b.sortDate.localeCompare(a.sortDate)
+);
 
 export const extracurriculars = [
   {
@@ -222,7 +234,7 @@ export const skills = {
 } as const;
 
 export const resumeSummary =
-  "BS Computer Science (Minor: French) at University of Michigan. Experience in full-stack development, technical analysis, RAG systems, and research. Strong foundation in data structures, algorithms, and ML.";
+  "BS Computer Science (Minor: French) at University of Michigan. Experience in full-stack development, technical analysis, and research. Strong foundation in data structures, algorithms, and ML.";
 
 export const resumeHighlights = [
   "B.S. Computer Science, Minor in French, University of Michigan",
@@ -235,7 +247,7 @@ export const contactCta =
   "Open to internships, research opportunities, and collaborative projects. Get in touch below.";
 
 export const currentFocus = [
-  "Side projects in C++ and Python",
-  "Data structures, algorithms, and systems",
-  "Clean implementation and things people can use",
+  "Software engineering in C++ and Python",
+  "Core CS: data structures, algorithms, systems",
+  "Designing efficient and usable applications",
 ] as const;

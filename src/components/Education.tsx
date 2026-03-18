@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { education } from "@/lib/site-data";
+import { inViewOnce, sectionHeaderVariants, sectionSublineVariants, sectionReveal } from "@/lib/motion-variants";
 
 export function Education() {
   const ref = useRef(null);
@@ -11,24 +12,32 @@ export function Education() {
   return (
     <section id="education" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 36 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
+        <header className="mb-12">
+          <motion.h2
+            variants={sectionHeaderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight"
+          >
             Education
-          </h2>
-          <p className="mt-3 text-[hsl(var(--muted))] text-lg">
+          </motion.h2>
+          <motion.p
+            variants={sectionSublineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="mt-3 text-[hsl(var(--muted))] text-lg"
+          >
             {education.school}
-          </p>
-        </motion.header>
+          </motion.p>
+        </header>
 
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          variants={sectionReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={inViewOnce}
           className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
           whileHover={{ boxShadow: "0 16px 40px -12px rgba(0,0,0,0.1)" }}
         >

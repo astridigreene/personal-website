@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { skills } from "@/lib/site-data";
+import { inViewOnce, sectionHeaderVariants, sectionSublineVariants } from "@/lib/motion-variants";
 
 const categories = [
   { title: "Languages", items: skills.languages },
@@ -17,19 +18,26 @@ export function Skills() {
   return (
     <section id="skills" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 36 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14"
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight">
+        <header className="mb-14">
+          <motion.h2
+            variants={sectionHeaderVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight"
+          >
             Skills
-          </h2>
-          <p className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl">
+          </motion.h2>
+          <motion.p
+            variants={sectionSublineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inViewOnce}
+            className="mt-3 text-[hsl(var(--muted))] text-lg max-w-2xl"
+          >
             Languages, tools, and focus areas.
-          </p>
-        </motion.header>
+          </motion.p>
+        </header>
 
         <div className="grid gap-8 md:grid-cols-3">
           {categories.map((cat, catIndex) => (
