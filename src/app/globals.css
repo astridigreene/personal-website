@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Navbar height used for scroll-margin-top on all sections */
+:root {
+  --nav-height: 76px;
+}
+
 /* Light: white, off-white, icy/light blue, steel blue, navy accents */
 :root {
   --background: 210 25% 98%;

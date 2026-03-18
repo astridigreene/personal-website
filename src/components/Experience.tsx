@@ -65,14 +65,17 @@ export function Experience() {
 
   const { scrollYProgress } = useScroll({
     target: gridRef,
-    offset: ["start 0.88", "end 0.12"],
+    // Start tracking as soon as the grid top crosses 95% of viewport height;
+    // finish when the grid bottom reaches 5% from the viewport top.
+    offset: ["start 0.95", "end 0.05"],
   });
 
+  // Snappier spring: higher stiffness = faster response, lower damping = less lag
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 32,
-    mass: 0.35,
-    restDelta: 0.0008,
+    stiffness: 160,
+    damping: 22,
+    mass: 0.18,
+    restDelta: 0.001,
   });
 
   const trackGlowOpacity = useTransform(smoothProgress, [0, 0.15, 1], [0.2, 0.85, 1]);
@@ -81,7 +84,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="scroll-mt-24 section-alt py-20 md:py-28"
+      className="scroll-mt-[var(--nav-height)] section-alt py-20 md:py-28"
     >
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-14">

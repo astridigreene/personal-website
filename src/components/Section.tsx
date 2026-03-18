@@ -38,7 +38,7 @@ export function Section({
     <section
       id={id}
       ref={ref}
-      className={`scroll-mt-24 ${variantClasses[variant]} ${noPadding ? "" : "py-20 md:py-28"} ${className}`}
+      className={`scroll-mt-[var(--nav-height)] ${variantClasses[variant]} ${noPadding ? "" : "py-20 md:py-28"} ${className}`}
     >
       <div className="mx-auto max-w-5xl px-6">
         {(title || subtitle) && (

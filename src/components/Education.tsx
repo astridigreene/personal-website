@@ -10,7 +10,7 @@ export function Education() {
   const inView = useInView(ref, { amount: 0.1 });
 
   return (
-    <section id="education" className="scroll-mt-24 py-20 md:py-28" ref={ref}>
+    <section id="education" className="scroll-mt-[var(--nav-height)] py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-12">
           <motion.h2

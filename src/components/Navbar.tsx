@@ -22,7 +22,8 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const headerLine = 100;
+    // Match --nav-height in globals.css so active-link fires when section hits navbar bottom
+    const headerLine = 80;
     const onScroll = () => {
       setScrolled(window.scrollY > 24);
       const ids = navLinks.map((l) => l.href.slice(1));

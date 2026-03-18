@@ -15,36 +15,25 @@ export const transitionSlow = {
 
 /** Section titles / intros */
 export const sectionHeaderVariants: Variants = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: transitionSlow,
+    transition: { duration: 0.52, ease: easeOutExpo },
   },
 };
 
 export const sectionSublineVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { ...transitionBase, delay: 0.08 },
+    transition: { duration: 0.44, ease: easeOutExpo, delay: 0.06 },
   },
 };
 
 /** Parent: staggers direct children */
 export const staggerContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.11,
-      delayChildren: 0.06,
-    },
-  },
-};
-
-/** Tighter stagger for dense grids */
-export const staggerContainerTight: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -54,8 +43,36 @@ export const staggerContainerTight: Variants = {
   },
 };
 
+/** Tighter stagger for dense grids */
+export const staggerContainerTight: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.03,
+    },
+  },
+};
+
 /** Card / block entrance: translateY + opacity + subtle scale */
 export const fadeUpScale: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.46,
+      ease: easeOutExpo,
+    },
+  },
+};
+
+export const fadeUpScaleFeatured: Variants = {
   hidden: {
     opacity: 0,
     y: 32,
@@ -66,50 +83,37 @@ export const fadeUpScale: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.58,
+      duration: 0.5,
       ease: easeOutExpo,
     },
   },
 };
 
-export const fadeUpScaleFeatured: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    scale: 0.95,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.62,
-      ease: easeOutExpo,
-    },
-  },
-};
-
-/** Shared viewport for scroll reveals */
+/**
+ * Shared viewport config for all scroll-triggered reveals.
+ * Positive bottom margin pre-fires the observer so elements
+ * animate as they approach the viewport (not after entering it).
+ */
 export const inViewOnce = {
   once: true as const,
-  amount: 0.12,
-  margin: "0px 0px -8% 0px",
+  amount: 0.04,
+  margin: "0px 0px 80px 0px",
 };
 
 /** Section wrapper (between-section feel) */
 export const sectionReveal: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: easeOutExpo },
+    transition: { duration: 0.5, ease: easeOutExpo },
   },
 };
 
 export const sectionStagger: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.06 },
+    transition: { staggerChildren: 0.09, delayChildren: 0.04 },
   },
 };
 

@@ -7,7 +7,7 @@ import { Extracurriculars } from "@/components/Extracurriculars";
 
 export function Extras() {
   return (
-    <section id="involvement" className="scroll-mt-24">
+    <section id="involvement" className="scroll-mt-[var(--nav-height)]">
       <Education />
       <Skills />
       <Resume />

@@ -9,7 +9,7 @@ export function Extracurriculars() {
   const inView = useInView(ref, { amount: 0.1 });
 
   return (
-    <section id="extracurriculars" className="scroll-mt-24 py-16 md:py-20" ref={ref}>
+    <section id="extracurriculars" className="scroll-mt-[var(--nav-height)] py-16 md:py-20" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}

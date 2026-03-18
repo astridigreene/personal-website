@@ -95,7 +95,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="scroll-mt-24 relative overflow-hidden py-20 md:py-28"
+      className="scroll-mt-[var(--nav-height)] relative overflow-hidden py-20 md:py-28"
       aria-labelledby="projects-heading"
     >
       {/* Subtle ambient motion — low opacity, transform-only friendly */}

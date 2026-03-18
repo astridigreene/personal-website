@@ -12,7 +12,7 @@ export function Resume() {
   const highlights = resumeHighlights;
 
   return (
-    <section id="resume" className="scroll-mt-24 section-navy py-20 md:py-28" ref={ref}>
+    <section id="resume" className="scroll-mt-[var(--nav-height)] section-navy py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-12">
           <motion.h2

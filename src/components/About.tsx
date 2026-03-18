@@ -21,7 +21,7 @@ export function About() {
   ];
 
   return (
-    <section id="about" className="scroll-mt-24 section-alt py-20 md:py-28" ref={ref}>
+    <section id="about" className="scroll-mt-[var(--nav-height)] section-alt py-20 md:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-14">
           <motion.h2

@@ -27,7 +27,7 @@ const channels = [
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24 section-alt py-20 md:py-28">
+    <section id="contact" className="scroll-mt-[var(--nav-height)] section-alt py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-12 md:mb-14">
           <motion.h2
