@@ -3,32 +3,22 @@ import type { Variants } from "framer-motion";
 /** Premium ease — smooth deceleration, no linear snap */
 export const easeOutExpo: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-export const transitionBase = {
-  duration: 0.55,
-  ease: easeOutExpo,
-} as const;
-
-export const transitionSlow = {
-  duration: 0.72,
-  ease: easeOutExpo,
-} as const;
-
 /** Section titles / intros */
 export const sectionHeaderVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.52, ease: easeOutExpo },
+    transition: { duration: 0.46, ease: easeOutExpo },
   },
 };
 
 export const sectionSublineVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.44, ease: easeOutExpo, delay: 0.06 },
+    transition: { duration: 0.38, ease: easeOutExpo, delay: 0.05 },
   },
 };
 
@@ -37,8 +27,8 @@ export const staggerContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.09,
-      delayChildren: 0.04,
+      staggerChildren: 0.08,
+      delayChildren: 0.03,
     },
   },
 };
@@ -48,8 +38,8 @@ export const staggerContainerTight: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.03,
+      staggerChildren: 0.06,
+      delayChildren: 0.02,
     },
   },
 };
@@ -58,8 +48,25 @@ export const staggerContainerTight: Variants = {
 export const fadeUpScale: Variants = {
   hidden: {
     opacity: 0,
-    y: 24,
+    y: 20,
     scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.42,
+      ease: easeOutExpo,
+    },
+  },
+};
+
+export const fadeUpScaleFeatured: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    scale: 0.96,
   },
   visible: {
     opacity: 1,
@@ -72,48 +79,31 @@ export const fadeUpScale: Variants = {
   },
 };
 
-export const fadeUpScaleFeatured: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 32,
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5,
-      ease: easeOutExpo,
-    },
-  },
-};
-
 /**
  * Shared viewport config for all scroll-triggered reveals.
- * Positive bottom margin pre-fires the observer so elements
- * animate as they approach the viewport (not after entering it).
+ * Positive bottom margin pre-fires the observer so elements animate
+ * as they approach the viewport (not only after fully entering it).
  */
 export const inViewOnce = {
   once: true as const,
   amount: 0.04,
-  margin: "0px 0px 80px 0px",
+  margin: "0px 0px 120px 0px",
 };
 
-/** Section wrapper (between-section feel) */
+/** Section wrapper entrance */
 export const sectionReveal: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: easeOutExpo },
+    transition: { duration: 0.44, ease: easeOutExpo },
   },
 };
 
 export const sectionStagger: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.04 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.03 },
   },
 };
 
@@ -167,18 +157,13 @@ export const projectCardArrow: Variants = {
   hover: { x: 5, opacity: 1, transition: { type: "spring", stiffness: 380, damping: 22 } },
 };
 
-export const projectCardIcon: Variants = {
-  rest: { scale: 1, rotate: 0 },
-  hover: { scale: 1.08, rotate: -4, transition: springCard },
-};
-
 /** Nested grid after featured — staggers only grid cards */
 export const staggerGridWrapper: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.04,
+      staggerChildren: 0.08,
+      delayChildren: 0.02,
     },
   },
 };

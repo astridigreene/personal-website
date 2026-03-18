@@ -1,18 +1,14 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { site, resumeSummary, resumeHighlights } from "@/lib/site-data";
 import { inViewOnce, sectionHeaderVariants, sectionSublineVariants } from "@/lib/motion-variants";
 
 export function Resume() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.2 });
-
   const highlights = resumeHighlights;
 
   return (
-    <section id="resume" className="scroll-mt-[var(--nav-height)] section-navy py-20 md:py-28" ref={ref}>
+    <section id="resume" className="scroll-mt-[var(--nav-height)] section-navy py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-12">
           <motion.h2
@@ -36,9 +32,10 @@ export function Resume() {
         </header>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={inViewOnce}
+          transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8 backdrop-blur-sm"
         >
           <p className="text-white/90 leading-relaxed text-lg">
@@ -49,8 +46,9 @@ export function Resume() {
               <motion.li
                 key={h}
                 initial={{ opacity: 0, x: -8 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 + i * 0.06 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={inViewOnce}
+                transition={{ duration: 0.34, delay: 0.04 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 className="text-white/80 flex items-center gap-2 text-sm"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />

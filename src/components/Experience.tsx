@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import {
   motion,
-  useInView,
   useScroll,
   useSpring,
   useTransform,
@@ -60,7 +59,6 @@ function TimelineDot({
 export function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(sectionRef, { amount: 0.05 });
   const n = experiences.length;
 
   const { scrollYProgress } = useScroll({
@@ -159,11 +157,12 @@ export function Experience() {
             <motion.article
               key={exp.id}
               style={{ gridColumn: 2, gridRow: index + 1 }}
-              initial={{ opacity: 0, x: -24, filter: "blur(4px)" }}
-              animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={inViewOnce}
               transition={{
-                duration: 0.65,
-                delay: index * 0.1,
+                duration: 0.46,
+                delay: index * 0.06,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="min-w-0"

@@ -1,18 +1,14 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { education } from "@/lib/site-data";
 import { inViewOnce, sectionHeaderVariants, sectionSublineVariants, sectionReveal } from "@/lib/motion-variants";
 
 export function Education() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.1 });
-
   return (
-    <section id="education" className="scroll-mt-[var(--nav-height)] py-20 md:py-28" ref={ref}>
+    <section id="education" className="scroll-mt-[var(--nav-height)] py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <header className="mb-12">
+        <header className="mb-14">
           <motion.h2
             variants={sectionHeaderVariants}
             initial="hidden"
@@ -55,8 +51,9 @@ export function Education() {
               <motion.span
                 key={c}
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={inView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.3, delay: 0.2 + i * 0.04 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={inViewOnce}
+                transition={{ duration: 0.28, delay: 0.04 + i * 0.025, ease: [0.22, 1, 0.36, 1] }}
                 className="rounded-lg bg-ice border border-[hsl(var(--border))] px-3 py-1.5 text-sm font-medium text-[hsl(var(--foreground))]"
               >
                 {c}

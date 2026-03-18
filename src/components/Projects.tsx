@@ -126,20 +126,7 @@ export function Projects() {
         />
       </div>
 
-      <motion.div
-        className="mx-auto max-w-5xl px-6"
-        variants={{
-          hidden: { opacity: 0, y: 24 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-          },
-        }}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inViewOnce}
-      >
+      <div className="mx-auto max-w-5xl px-6">
         <header className="mb-14">
           <motion.h2
             id="projects-heading"
@@ -247,7 +234,7 @@ export function Projects() {
                   >
                     {proj.title}
                   </motion.h3>
-                  <p className="mt-2 text-sm text-[hsl(var(--muted))] leading-relaxed flex-1">
+                  <p className="mt-2 text-sm text-[hsl(var(--muted))] leading-relaxed">
                     {proj.description}
                   </p>
                   <ul className="mt-4 space-y-1">
@@ -266,6 +253,8 @@ export function Projects() {
                       </li>
                     ))}
                   </ul>
+                  {/* Spacer: absorbs any grid-equalised height so tools+links stay pinned to the card bottom */}
+                  <div className="flex-1" aria-hidden />
                   <div className="mt-4 flex flex-wrap gap-2">
                     {proj.tools.map((t) => (
                       <motion.span
@@ -284,7 +273,7 @@ export function Projects() {
             ))}
           </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

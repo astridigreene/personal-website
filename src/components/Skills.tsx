@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { skills } from "@/lib/site-data";
 import { inViewOnce, sectionHeaderVariants, sectionSublineVariants } from "@/lib/motion-variants";
+
+const easeOut: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const categories = [
   { title: "Languages", items: skills.languages },
@@ -12,11 +13,8 @@ const categories = [
 ] as const;
 
 export function Skills() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.08 });
-
   return (
-    <section id="skills" className="scroll-mt-[var(--nav-height)] py-20 md:py-28" ref={ref}>
+    <section id="skills" className="scroll-mt-[var(--nav-height)] py-20 md:py-28">
       <div className="mx-auto max-w-5xl px-6">
         <header className="mb-14">
           <motion.h2
@@ -43,12 +41,13 @@ export function Skills() {
           {categories.map((cat, catIndex) => (
             <motion.div
               key={cat.title}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={inViewOnce}
               transition={{
-                duration: 0.5,
-                delay: catIndex * 0.1,
-                ease: [0.22, 1, 0.36, 1],
+                duration: 0.42,
+                delay: catIndex * 0.07,
+                ease: easeOut,
               }}
               className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 shadow-soft"
             >
@@ -56,13 +55,8 @@ export function Skills() {
                 {cat.title}
               </h3>
               <ul className="flex flex-wrap gap-2">
-                {cat.items.map((item, i) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.3, delay: 0.15 + catIndex * 0.05 + i * 0.03 }}
-                  >
+                {cat.items.map((item) => (
+                  <li key={item}>
                     <motion.span
                       className="inline-block rounded-xl bg-ice border border-[hsl(var(--border))] px-3 py-2 text-sm font-medium text-[hsl(var(--foreground))]"
                       whileHover={{
@@ -73,7 +67,7 @@ export function Skills() {
                     >
                       {item}
                     </motion.span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </motion.div>
