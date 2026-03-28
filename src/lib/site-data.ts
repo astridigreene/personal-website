@@ -6,7 +6,7 @@ export const site = {
   name: "Astrid Greene",
   tagline:
     "Computer Science at the University of Michigan, focused on software engineering and machine learning.",
-  headshot: "/images/headshot.jpeg",
+  headshot: "/images/headshot.jpg",
   resumeUrl: "/resume/resume.pdf",
 } as const;
 
