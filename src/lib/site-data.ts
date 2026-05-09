@@ -20,7 +20,7 @@ export const contact = {
 export const education = {
   school: "University of Michigan",
   degree: "B.S. in Computer Science, Minor in French",
-  gpa: "3.8/4.0",
+  gpa: "3.7/4.0",
   honors: "University Honors",
   coursework: [
     "Data Structures and Algorithms",
@@ -39,15 +39,27 @@ export const about = {
 
 export const experiences = [
   {
+    id: "coretek",
+    company: "Coretek",
+    role: "AI Engineering Intern",
+    location: "Farmington Hills, MI",
+    period: "May 2026 – Present",
+    bullets: [
+      "Built a company-wide meeting scheduling agent using Microsoft Copilot Studio, Microsoft Graph API, and Power Automate, ranking optimal meeting times across 2–10+ participants and reducing manual scheduling overhead.",
+      "Designed cloud flows in Power Automate using HTTP requests with Microsoft Entra ID authentication to retrieve Outlook calendar availability, working hours, time zones, and scheduling constraints across 1,000+ internal users.",
+      "Implemented AI-driven scheduling workflows using Claude Sonnet, Swagger/OpenAPI 2.0, Azure AI Foundry, and Microsoft Graph integrations to automate real-time meeting coordination across internal company teams.",
+    ],
+  },
+  {
     id: "tech-plus-dev",
     company: "Tech Plus Development Team",
     role: "Software Engineer",
     location: "Ann Arbor, MI",
-    period: "Mar 2025 – Present",
+    period: "Mar 2025 – May 2026",
     bullets: [
-      "Built a full-stack club platform for Tech Plus serving 300+ members and about 20 clients. Multi-page responsive frontend and backend architecture with a Node/Express-style API, REST endpoints, auth, and scalable data models for members, projects, events, and attendance.",
-      "Built an internal portal for 300+ users with auth, protected routes, and modular dashboards for member directory, alumni graph, project assignments, attendance, and resources.",
-      "Designed JSON-based data models with a path to migrate to PostgreSQL and cloud deployment.",
+      "Designed and implemented a role-based authentication system using Supabase Auth and PostgreSQL, writing 10+ Row Level Security policies to enforce granular access control across 3 user roles (admin, member, recruit).",
+      "Built an internal member portal in React and TypeScript with Vite, featuring a member directory, project team management, attendance tracking, and event scheduling, serving 50+ active club members across 6 project teams.",
+      "Configured full-stack deployment pipeline using GitHub, Supabase, and Vercel, managing environment variables and API keys across both development and production environments to support continuous deployment workflows.",
     ],
   },
   {
@@ -57,8 +69,9 @@ export const experiences = [
     location: "Ann Arbor, MI",
     period: "Jan 2026 – Present",
     bullets: [
-      "Designed technical requirements for an internal AI policy chatbot using retrieval-augmented generation (RAG), including document ingestion, embedding, vector search, and source attribution",
-      "Evaluated data quality, access control, and update workflows to ensure accurate, auditable, and maintainable AI responses from sanctioned policy sources",
+      "Built an AI policy chatbot by migrating 200+ client policy documents into a structured Google Drive and connecting U-M Maizey’s REST API to embed a searchable chatbot widget directly on the client’s password-protected site.",
+      "Resolved data ingestion issues caused by inconsistent document formatting, access-restricted pages, and duplicate file versions, cleaning and standardizing source data across 15+ file types to improve retrieval accuracy and reliability.",
+      "Conducted 6+ stakeholder meetings over a 4-week sprint to define system requirements, identify access constraints, and scope chatbot functionality, reducing the initial feature set by 40% to prioritize high-value policy retrieval",
     ],
   },
   {
@@ -80,17 +93,49 @@ export const experiences = [
     location: "",
     period: "June 2023 – Aug 2023",
     bullets: [
-      'Co-authored a paper titled "Debunking The Curse of Dimensionality in a K-Nearest Neighbors Classification Problem"',
-      "Selected as a Semi-Finalist in the Junior Science and Humanities Symposium",
-      "Researched k-nearest neighbors and the curse of dimensionality using Python experiments",
-      "Designed experiments on datasets with 1000+ points, varying k-values and dimensions from 2D to 15D",
-      "Used NumPy, Scikit-learn, and Matplotlib for data generation, training, and visualization",
+      'Co-authored paper ”Debunking The Curse of Dimensionality in a K-Nearest Neighbors Classification Problem” with advisor Dr. Eric Sakk, selected as a national Semi-Finalist in the Junior Science and Humanities Symposium',
+      "Researched ”Curse of Dimensionality” in k-Nearest Neighbors, running controlled Python experiments to show that in uniform, hard-confidence data sets, increasing dimensionality can improve k-NN classification performance",
+      "Designed k-NN experiments in Python on datasets of 1000+ points, varying k-values and dimensions (2D–15D) to test classification accuracy, with NumPy, Scikit-learn, and Matplotlib for data generation, training, and visualization",
     ],
   },
 ] as const;
 
 /** sortDate: ISO YYYY-MM-DD for chronological ordering (display `date` stays human-readable) */
 export const projects = [
+  {
+    id: "dog-classification",
+    title: "Deep Learning Dog Breed Classification",
+    date: "Mar 2026",
+    sortDate: "2026-03-24",
+    description:
+      "Developed deep learning architectures in PyTorch for multi-class dog breed classification, implementing convolutional neural networks, Vision Transformers, transfer learning, and multi-head self-attention across an 8,867-image dataset.",
+    highlights: [
+      "Implemented CNN and Vision Transformer architectures with scaled dot-product attention",
+      "Trained models across 10-class, 8,867-image computer vision dataset",
+      "Built transfer learning pipelines with checkpointing and Adam optimization",
+    ],
+    tools: ["PyTorch", "CNNs", "Vision Transformers", "Python"],
+    featured: false,
+    githubUrl: null as string | null,
+    liveUrl: null as string | null,
+  },
+  {
+    id: "icu-mortality-prediction",
+    title: "ICU Mortality Prediction Model",
+    date: "Feb 2026",
+    sortDate: "2026-02-18",
+    description:
+      "Engineered a clinical machine learning pipeline to predict ICU mortality risk using multivariate EHR time-series data, feature engineering workflows, and kernelized classification models across 12,000+ patient admissions.",
+    highlights: [
+      "Processed 12,000+ ICU admissions and 40+ physiological variables",
+      "Executed 1,000+ bootstrap resampling iterations and 5-fold cross-validation",
+      "Benchmarked logistic regression, kernel ridge regression, and RBF models using AUROC",
+    ],
+    tools: ["Python", "Scikit-learn", "NumPy", "Pandas"],
+    featured: false,
+    githubUrl: null as string | null,
+    liveUrl: null as string | null,
+  },
   {
     id: "order-book",
     title: "Order Book Simulator",
