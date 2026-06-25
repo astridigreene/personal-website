@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-type SectionVariant = "default" | "alt" | "elevated" | "navy";
+type SectionVariant = "default" | "alt" | "elevated";
 
 type SectionProps = {
   id: string;
@@ -19,7 +19,6 @@ const variantClasses: Record<SectionVariant, string> = {
   default: "section-default",
   alt: "section-alt",
   elevated: "section-elevated",
-  navy: "section-navy",
 };
 
 export function Section({

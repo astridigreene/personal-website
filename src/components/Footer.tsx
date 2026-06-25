@@ -1,50 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { ScrollLink } from "@/components/ScrollLink";
 import { contact, site } from "@/lib/site-data";
+import { stripHashFromUrl } from "@/lib/scroll-to-section";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
+  useEffect(() => {
+    stripHashFromUrl();
+  }, []);
+
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="border-t border-[hsl(var(--border))] bg-[hsl(var(--surface-elevated))]"
-    >
-      <div className="mx-auto max-w-5xl px-6 py-10">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-sm text-[hsl(var(--muted))]">
-            © {year} {site.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-8">
-            <a
-              href={contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-[hsl(var(--muted))] hover:text-accent transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-[hsl(var(--muted))] hover:text-accent transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href={`mailto:${contact.email}`}
-              className="text-sm font-medium text-[hsl(var(--muted))] hover:text-accent transition-colors"
-            >
-              Email
-            </a>
-          </div>
-        </div>
-      </div>
-    </motion.footer>
+    <footer className="section-block border-t-2 border-[hsl(var(--border))] bg-[hsl(215_48%_84%)] dark:bg-[hsl(var(--surface-elevated))] py-4">
+      <hr className="hr-thick" />
+      <p className="text-center meta mb-3">
+        (c) {year} {site.name} — built by hand, probably
+      </p>
+      <p className="text-center text-sm">
+        <ScrollLink sectionId="settings" className="nav-plain">
+          settings
+        </ScrollLink>
+        <span className="text-[hsl(var(--muted))]"> | </span>
+        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
+          linkedin
+        </a>
+        <span className="text-[hsl(var(--muted))]"> | </span>
+        <a href={contact.github} target="_blank" rel="noopener noreferrer">
+          github
+        </a>
+        <span className="text-[hsl(var(--muted))]"> | </span>
+        <a href={`mailto:${contact.email}`}>email</a>
+      </p>
+      <p className="text-center meta mt-3 text-xs">
+        last updated: {year}
+      </p>
+    </footer>
   );
 }

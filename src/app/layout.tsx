@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Settings } from "@/components/Settings";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ScrollProgress } from "@/components/ScrollProgress";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Astrid Greene | Computer Science @ Michigan",
@@ -36,14 +23,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${outfit.variable} ${jetbrainsMono.variable} font-sans min-h-screen`}
-      >
+      <body className="min-h-screen py-0 md:py-4">
         <ThemeProvider>
-          <ScrollProgress />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <div className="site-frame min-h-screen md:min-h-0">
+            <Navbar />
+            <main>{children}</main>
+            <Settings />
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

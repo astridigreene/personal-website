@@ -1,91 +1,77 @@
-# Personal Website
+# personal-website
 
-Personal website built with Next.js and TypeScript to showcase projects, experience, and technical work. Structured around reusable components, clean layout, and heavy animation to make the site feel interactive instead of static.
+My portfolio site. Single-page layout with sections for about, experience, projects, education, skills, and contact.
 
-Made with Next.js, TypeScript, Tailwind CSS, Framer Motion  
-By Astrid Greene astridig@umich.edu
-
----
-
-## Overview
-
-This is a portfolio site designed to actually feel like a product, not just a page of text.
-
-The focus is on:
-- clear structure
-- strong visual hierarchy
-- interaction and motion
-
-Everything is componentized so content can be updated without rewriting layout logic.
+**Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS
 
 ---
 
-## Features
+## Requirements
 
-- Fully responsive layout (desktop + mobile)
-- Section-based navigation (hero, experience, projects, etc.)
-- Scroll-triggered animations and transitions
-- Interactive UI elements and hover states
-- Resume integration (download/view)
-- Modular project and experience data
-- Dark mode support
+- Node.js 18+ (20+ recommended)
+- npm
 
 ---
 
-## Tech Stack
-
-- Next.js (App Router)
-- TypeScript
-- React
-- Tailwind CSS
-- Framer Motion
-
----
-
-## Project Structure
-
-```
-src/
-  app/            → routing + layout
-  components/     → UI components (Navbar, sections, cards)
-  lib/            → structured site data
-public/
-  images/         → assets (headshot, etc.)
-  resume/         → resume PDF
-```
-
----
-
-## Running Locally
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000). The dev server hot-reloads on save.
+
+### Other commands
+
+```bash
+npm run build   # production build
+npm run start   # serve the production build (run build first)
+npm run lint    # ESLint
+```
 
 ---
 
-## Notes
+## Project layout
 
-The site is intentionally built to separate content from layout. Most updates (projects, experience, links) can be made through data files without touching component code.
+```
+src/
+  app/
+    layout.tsx      # root layout, theme provider, nav/footer/settings shell
+    page.tsx        # homepage — composes all sections
+    globals.css     # colors, retro UI classes, theme variables
+  components/       # section components (Hero, About, Projects, etc.)
+  lib/
+    site-data.ts    # all copy, links, projects, experience — edit this first
+public/
+  images/           # headshot and other static assets
+```
 
-Animations are used heavily, but tied to scroll and interaction so they feel intentional rather than distracting.
+Content lives in `src/lib/site-data.ts`. Layout and styling live in the components and `globals.css`.
 
 ---
 
-## Future Improvements
+## Theming
 
-- Add backend for contact form or messaging
-- Store projects/experience in a database instead of static files
-- Add dedicated project pages with deeper detail
-- Improve performance (image optimization, lazy loading)
-- Add analytics
+Dark mode is toggled in the **Settings** section at the bottom of the page. Preference is saved to `localStorage` under the key `theme`.
+
+CSS variables for light/dark palettes are defined in `src/app/globals.css`. Tailwind is used mainly for layout utilities; most visual styling is custom classes in `globals.css` (`.panel`, `.btn`, `.site-frame`, etc.).
+
+---
+
+## Deploying
+
+This is a standard Next.js static-friendly app. A typical flow:
+
+```bash
+npm run build
+npm run start
+```
+
+Or deploy to [Vercel](https://vercel.com) by connecting the repo — no extra config needed for a default Next.js project.
 
 ---
 
 ## Contact
 
-Astrid Greene  
-astridig@umich.edu
+Astrid Greene — [astridig@umich.edu](mailto:astridig@umich.edu)

@@ -1,32 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "./ThemeProvider";
+import { useEffect, useState } from "react";
+import { ScrollLink } from "@/components/ScrollLink";
+import { site } from "@/lib/site-data";
+import { stripHashFromUrl } from "@/lib/scroll-to-section";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#involvement", label: "Involvement" },
-  { href: "#resume", label: "Resume" },
-  { href: "#contact", label: "Contact" },
-];
+  { id: "about", label: "about" },
+  { id: "experience", label: "experience" },
+  { id: "projects", label: "projects" },
+  { id: "involvement", label: "involvement" },
+  { id: "contact", label: "contact" },
+] as const;
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    // Match --nav-height in globals.css so active-link fires when section hits navbar bottom
-    const headerLine = 80;
+    stripHashFromUrl();
+    const onHashChange = () => stripHashFromUrl();
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const headerLine = 60;
     const onScroll = () => {
-      setScrolled(window.scrollY > 24);
-      const ids = navLinks.map((l) => l.href.slice(1));
+      const ids = ["home", ...navLinks.map((l) => l.id)];
       let current = ids[0] ?? "home";
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -42,151 +43,56 @@ export function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[hsl(var(--background)/0.9)] dark:bg-[hsl(var(--background)/0.92)] backdrop-blur-lg border-b border-[hsl(var(--border))] shadow-soft"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="#home" className="relative group scroll-smooth">
-          <span className="text-lg font-semibold text-[hsl(var(--foreground))] group-hover:text-accent transition-colors">
-            AG
-          </span>
-          <motion.span
-            className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-[width] duration-300"
-            style={{ width: "0%" }}
-          />
-        </Link>
+    <header className="sticky top-0 z-50 border-b-2 border-[hsl(var(--border))] bg-[hsl(215_48%_84%)] dark:bg-[hsl(var(--surface-elevated))]">
+      <nav className="flex items-center justify-between px-4 py-2">
+        <ScrollLink toTop className="nav-plain font-bold text-sm">
+          {site.name.toLowerCase()}.com
+        </ScrollLink>
 
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map(({ href, label }) => {
-            const id = href.slice(1);
+        <div className="hidden md:flex items-center text-sm meta">
+          {navLinks.map(({ id, label }, i) => {
             const isActive = activeId === id;
             return (
-              <Link key={href} href={href} className="relative py-2 px-3">
-                <span
-                  className={`text-sm font-medium transition-colors ${
-                    isActive
-                      ? "text-accent"
-                      : "text-[hsl(var(--muted))] hover:text-[hsl(var(--foreground))]"
-                  }`}
+              <span key={id} className="flex items-center">
+                {i > 0 && (
+                  <span className="mx-1.5 text-[hsl(var(--border))]">|</span>
+                )}
+                <ScrollLink
+                  sectionId={id}
+                  className={`nav-plain ${isActive ? "font-bold underline" : ""}`}
                 >
                   {label}
-                </span>
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
+                </ScrollLink>
+              </span>
             );
           })}
-          <motion.button
-            type="button"
-            onClick={toggleTheme}
-            className="ml-2 p-2.5 rounded-xl text-[hsl(var(--muted))] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(var(--surface-elevated))] transition-colors"
-            aria-label="Toggle dark mode"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {theme === "dark" ? (
-              <SunIcon className="w-5 h-5" />
-            ) : (
-              <MoonIcon className="w-5 h-5" />
-            )}
-          </motion.button>
         </div>
 
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="p-2 rounded-lg text-[hsl(var(--muted))]"
-            aria-label="Toggle dark mode"
-          >
-            {theme === "dark" ? (
-              <SunIcon className="w-5 h-5" />
-            ) : (
-              <MoonIcon className="w-5 h-5" />
-            )}
-          </button>
-          <motion.button
-            type="button"
-            onClick={() => setMobileOpen((o) => !o)}
-            className="p-2 rounded-lg text-[hsl(var(--foreground))] hover:bg-[hsl(var(--surface-elevated))]"
-            aria-label="Toggle menu"
-            whileTap={{ scale: 0.95 }}
-          >
-            {mobileOpen ? (
-              <span className="text-xl leading-none">&times;</span>
-            ) : (
-              <MenuIcon className="w-6 h-6" />
-            )}
-          </motion.button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setMobileOpen((o) => !o)}
+          className="md:hidden btn text-xs py-1 px-2"
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? "[ x ]" : "[ menu ]"}
+        </button>
       </nav>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-[hsl(var(--border))] bg-[hsl(var(--background))] overflow-hidden"
-          >
-            <div className="px-6 py-4 flex flex-col gap-1">
-              {navLinks.map(({ href, label }, i) => (
-                <motion.div
-                  key={href}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.03 }}
-                >
-                  <Link
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-[hsl(var(--foreground))] hover:text-accent font-medium"
-                  >
-                    {label}
-                  </Link>
-                </motion.div>
-              ))}
+      {mobileOpen && (
+        <div className="md:hidden border-t-2 border-[hsl(var(--border))] px-4 py-2 bg-[hsl(var(--surface))]">
+          {navLinks.map(({ id, label }) => (
+            <div key={id} className="py-1">
+              <ScrollLink
+                sectionId={id}
+                onNavigate={() => setMobileOpen(false)}
+                className="nav-plain text-sm"
+              >
+                &gt; {label}
+              </ScrollLink>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
-  );
-}
-
-function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  );
-}
-
-function SunIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-    </svg>
-  );
-}
-
-function MoonIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-    </svg>
+          ))}
+        </div>
+      )}
+    </header>
   );
 }

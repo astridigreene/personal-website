@@ -1,5 +1,5 @@
 /**
- * Site content and config. Edit this file to customize copy, links, and resume.
+ * Site content and config. Edit this file to customize copy and links.
  */
 
 export const site = {
@@ -7,7 +7,6 @@ export const site = {
   tagline:
     "Computer Science at the University of Michigan, focused on software engineering and machine learning.",
   headshot: "/images/headshot.jpg",
-  resumeUrl: "/resume/resume.pdf",
 } as const;
 
 export const contact = {
@@ -20,16 +19,20 @@ export const contact = {
 export const education = {
   school: "University of Michigan",
   degree: "B.S. in Computer Science, Minor in French",
+  location: "Ann Arbor, MI",
+  expectedGraduation: "May 2028",
   gpa: "3.7/4.0",
   honors: "University Honors",
   coursework: [
     "Data Structures and Algorithms",
     "Machine Learning",
+    "Linear Algebra",
+    "Discrete Mathematics",
     "Computer Organization",
     "Object Oriented Programming",
-    "Discrete Mathematics",
-    "Linear Algebra",
     "Calculus I-II",
+    "Computer Pragmatics",
+    "Programming Concepts",
   ],
 } as const;
 
@@ -41,25 +44,25 @@ export const experiences = [
   {
     id: "coretek",
     company: "Coretek",
-    role: "AI Engineering Intern",
+    role: "Software Engineering Intern",
     location: "Farmington Hills, MI",
     period: "May 2026 – Present",
     bullets: [
-      "Built a company-wide meeting scheduling agent using Microsoft Copilot Studio, Microsoft Graph API, and Power Automate, ranking optimal meeting times across 2–10+ participants and reducing manual scheduling overhead.",
-      "Designed cloud flows in Power Automate using HTTP requests with Microsoft Entra ID authentication to retrieve Outlook calendar availability, working hours, time zones, and scheduling constraints across 1,000+ internal users.",
-      "Implemented AI-driven scheduling workflows using Claude Sonnet, Swagger/OpenAPI 2.0, Azure AI Foundry, and Microsoft Graph integrations to automate real-time meeting coordination across internal company teams.",
+      "Built an expense validation system across 5 Python Azure Function endpoints with OCR extraction, a 19-rule policy engine, and 10+ AI agent modules, processing 4,700+ lines annually and saving 500 hours and $30K/year",
+      "Designed deterministic-then-probabilistic validation architecture with worst-wins result aggregation, per-trip segmentation, and confidence-scored OCR fallback handling across 12 edge cases and 2 processing layers",
+      "Wrote 500+ automated tests across 3 tiers using independent reference oracles and boundary-value coverage, deploying code via GitHub Actions CI/CD with OIDC authentication and Azure Key Vault secret management",
     ],
   },
   {
     id: "tech-plus-dev",
-    company: "Tech Plus Development Team",
+    company: "Tech Plus Development",
     role: "Software Engineer",
     location: "Ann Arbor, MI",
-    period: "Mar 2025 – May 2026",
+    period: "Feb 2026 – May 2026",
     bullets: [
-      "Designed and implemented a role-based authentication system using Supabase Auth and PostgreSQL, writing 10+ Row Level Security policies to enforce granular access control across 3 user roles (admin, member, recruit).",
-      "Built an internal member portal in React and TypeScript with Vite, featuring a member directory, project team management, attendance tracking, and event scheduling, serving 50+ active club members across 6 project teams.",
-      "Configured full-stack deployment pipeline using GitHub, Supabase, and Vercel, managing environment variables and API keys across both development and production environments to support continuous deployment workflows.",
+      "Designed and implemented a role-based authentication system using Supabase Auth and PostgreSQL, writing 10+ Row Level Security policies to enforce granular access control across 3 user roles (admin, member, recruit)",
+      "Developed a full-stack internal platform in React, TypeScript, and Vite, featuring member management, attendance tracking, and event scheduling, serving 50+ active club members across 6 project teams",
+      "Configured full-stack deployment pipeline using GitHub, Supabase, and Vercel, managing environment variables and API keys across both development and production environments to support continuous deployment workflows",
     ],
   },
   {
@@ -67,11 +70,23 @@ export const experiences = [
     company: "Tech Plus Consulting",
     role: "Technical Analyst",
     location: "Ann Arbor, MI",
-    period: "Jan 2026 – Present",
+    period: "Jan 2026 – May 2026",
     bullets: [
-      "Built an AI policy chatbot by migrating 200+ client policy documents into a structured Google Drive and connecting U-M Maizey’s REST API to embed a searchable chatbot widget directly on the client’s password-protected site.",
-      "Resolved data ingestion issues caused by inconsistent document formatting, access-restricted pages, and duplicate file versions, cleaning and standardizing source data across 15+ file types to improve retrieval accuracy and reliability.",
+      "Built an AI policy chatbot by migrating 200+ client policy documents into a structured Google Drive and connecting U-M Maizey's REST API to embed a searchable chatbot widget directly on the client's password-protected site",
+      "Resolved data ingestion issues caused by inconsistent document formatting, access-restricted pages, and duplicate file versions, cleaning and standardizing source data across 15+ file types to improve retrieval accuracy and reliability",
       "Conducted 6+ stakeholder meetings over a 4-week sprint to define system requirements, identify access constraints, and scope chatbot functionality, reducing the initial feature set by 40% to prioritize high-value policy retrieval",
+    ],
+  },
+  {
+    id: "morgan-state",
+    company: "Morgan State University",
+    role: "Research Assistant",
+    location: "",
+    period: "June 2023 – Aug 2023",
+    bullets: [
+      'Co-authored paper "Debunking The Curse of Dimensionality in a K-Nearest Neighbors Classification Problem" with advisor Dr. Eric Sakk, selected as a national Semi-Finalist in the Junior Science and Humanities Symposium',
+      "Researched Curse of Dimensionality in k-Nearest Neighbors, running controlled Python experiments to show that in uniform, hard-confidence data sets, increasing dimensionality can improve k-NN classification performance",
+      "Designed k-NN experiments in Python on datasets of 1000+ points, varying k-values and dimensions (2D to 15D) to test classification accuracy, with NumPy, Scikit-learn, and Matplotlib for data generation, training, and visualization",
     ],
   },
   {
@@ -86,18 +101,6 @@ export const experiences = [
       "Implemented a user story submission feature that collected over 100 contributions and published select narratives to spotlight underrepresented experiences",
     ],
   },
-  {
-    id: "morgan-state",
-    company: "Morgan State University",
-    role: "Research Assistant",
-    location: "",
-    period: "June 2023 – Aug 2023",
-    bullets: [
-      'Co-authored paper ”Debunking The Curse of Dimensionality in a K-Nearest Neighbors Classification Problem” with advisor Dr. Eric Sakk, selected as a national Semi-Finalist in the Junior Science and Humanities Symposium',
-      "Researched ”Curse of Dimensionality” in k-Nearest Neighbors, running controlled Python experiments to show that in uniform, hard-confidence data sets, increasing dimensionality can improve k-NN classification performance",
-      "Designed k-NN experiments in Python on datasets of 1000+ points, varying k-values and dimensions (2D–15D) to test classification accuracy, with NumPy, Scikit-learn, and Matplotlib for data generation, training, and visualization",
-    ],
-  },
 ] as const;
 
 /** sortDate: ISO YYYY-MM-DD for chronological ordering (display `date` stays human-readable) */
@@ -108,14 +111,13 @@ export const projects = [
     date: "Mar 2026",
     sortDate: "2026-03-24",
     description:
-      "Developed deep learning architectures in PyTorch for multi-class dog breed classification, implementing convolutional neural networks, Vision Transformers, transfer learning, and multi-head self-attention across an 8,867-image dataset.",
+      "Custom PyTorch CNN and Vision Transformer architectures for 10-class dog breed image classification across a 9,000-image dataset.",
     highlights: [
-      "Implemented CNN and Vision Transformer architectures with scaled dot-product attention",
-      "Trained models across 10-class, 8,867-image computer vision dataset",
-      "Built transfer learning pipelines with checkpointing and Adam optimization",
+      "Implemented transformer encoders, multi-head self-attention, and scaled dot-product attention",
+      "Built transfer learning pipelines with Adam optimization, checkpoint serialization, tensor normalization, and 256-patch embeddings, training models over 10,000+ update iterations",
     ],
     tools: ["PyTorch", "CNNs", "Vision Transformers", "Python"],
-    featured: false,
+    featured: true,
     githubUrl: null as string | null,
     liveUrl: null as string | null,
   },
@@ -125,11 +127,10 @@ export const projects = [
     date: "Feb 2026",
     sortDate: "2026-02-18",
     description:
-      "Engineered a clinical machine learning pipeline to predict ICU mortality risk using multivariate EHR time-series data, feature engineering workflows, and kernelized classification models across 12,000+ patient admissions.",
+      "Clinical ML pipeline predicting ICU mortality from sparse EHR time-series data across 12,000+ admissions and 40+ physiological variables.",
     highlights: [
-      "Processed 12,000+ ICU admissions and 40+ physiological variables",
-      "Executed 1,000+ bootstrap resampling iterations and 5-fold cross-validation",
-      "Benchmarked logistic regression, kernel ridge regression, and RBF models using AUROC",
+      "Transformed sparse EHR time-series data through normalization, imputation, statistical aggregation, and feature engineering workflows",
+      "Executed 5-fold cross-validation and 1,000+ bootstrap resampling iterations across logistic regression, kernel ridge regression, and RBF kernel models, benchmarking AUROC, sensitivity, and specificity under imbalance conditions",
     ],
     tools: ["Python", "Scikit-learn", "NumPy", "Pandas"],
     featured: false,
@@ -142,13 +143,12 @@ export const projects = [
     date: "Oct 2025",
     sortDate: "2025-10-15",
     description:
-      "Built a price-time priority order-matching engine in C++ using priority queues to model bid and ask books. Achieves O(log n) complexity for both order insertion and matching, while enforcing strict price-time ordering to guarantee deterministic execution. The design focuses on efficient data structures and predictable performance under sustained, high-frequency order flow.",
+      "Central limit order book matching engine in C++ using heap-backed bid/ask books for low-latency trade execution.",
     highlights: [
-      "Processed 1M+ orders and executed 760K+ trades in under 10 seconds",
-      "74K+ orders/second throughput",
-      "O(log n) trade matching efficiency",
+      "Processed 1M+ orders and executed 760K+ trades in under 10 seconds with O(log n) matching complexity",
+      "Implemented limit and market order types with real-time bid-ask spread tracking, partial fill logic, and order cancellation, validating engine accuracy against 500K+ expected trade outputs with automated test scripts",
     ],
-    tools: ["C++", "Priority Queues", "Data Structures"],
+    tools: ["C++", "Heaps", "Data Structures"],
     featured: false,
     githubUrl: null as string | null,
     liveUrl: null as string | null,
@@ -166,7 +166,7 @@ export const projects = [
       "Structured content sections with clear hierarchy",
     ],
     tools: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    featured: true,
+    featured: false,
     githubUrl: "https://github.com/astridigreene/personal-website",
     liveUrl: null as string | null,
   },
@@ -243,50 +243,47 @@ export const projectsByDateDesc = [...projects].sort((a, b) =>
 );
 
 export const extracurriculars = [
-  {
-    id: "geecs",
-    name: "Girls in Electrical Engineering and Computer Science",
-    shortName: "GEECS",
-    role: "Member",
-    description: "Community for women and non-binary students in EECS.",
-  },
-  {
-    id: "eecs201",
-    name: "EECS 201",
-    shortName: "Instructional Aide",
-    role: "Instructional Aide",
-    description: "Support for Computer Organization coursework.",
-  },
-  {
-    id: "math-proctor",
-    name: "University of Michigan Math Learning Center",
-    shortName: "Math Exam Proctor",
-    role: "Proctor",
-    description: "Monitor exam sessions, verify identities, and coordinate sign-in for 25–30 students per session.",
-  },
+  "Girls in Electrical Engineering and Computer Science",
+  "Tech+ Consulting and Development",
+  "EECS 201 Instructional Aide",
+  "Math Exam Proctor",
 ] as const;
 
 export const skills = {
-  languages: ["C/C++", "Java", "Python", "JavaScript/TypeScript", "HTML/CSS", "SQL", "R"],
-  tools: ["Git", "Matplotlib", "NumPy", "Scikit-learn", "Pandas", "Linux"],
-  coreAreas: [
-    "Data Structures & Algorithms",
-    "Machine Learning",
-    "Retrieval-Augmented Generation",
-    "Software Development",
-    "Technical Research",
+  languages: [
+    "Python",
+    "C/C++",
+    "Bash",
+    "SQL",
+    "R",
+    "Java",
+    "C#",
+    "JavaScript/TypeScript",
+    "HTML/CSS",
+    "Swift",
+    "Kotlin",
+    "Go",
+  ],
+  tools: [
+    "Git",
+    "Linux",
+    "PyTorch",
+    "Scikit-learn",
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "PostgreSQL",
+    "GitHub",
+    "REST APIs",
+  ],
+  interests: [
+    "Avid Sudoku Solver",
+    "Card Game Enthusiast",
+    "Dedicated Tennis Player",
+    "Music Lover & Passionate Musician",
   ],
 } as const;
 
-export const resumeSummary =
-  "BS Computer Science (Minor: French) at University of Michigan. Experience in full-stack development, technical analysis, and research. Strong foundation in data structures, algorithms, and ML.";
-
-export const resumeHighlights = [
-  "B.S. Computer Science, Minor in French, University of Michigan",
-  "Full-stack and systems-level development",
-  "Research and data-driven projects",
-  "Data structures, algorithms, and ML",
-] as const;
 
 export const contactCta =
   "Open to internships, research opportunities, and collaborative projects.";

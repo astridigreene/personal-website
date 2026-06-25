@@ -1,66 +1,29 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { education } from "@/lib/site-data";
-import { inViewOnce, sectionHeaderVariants, sectionSublineVariants, sectionReveal } from "@/lib/motion-variants";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export function Education() {
   return (
-    <section id="education" className="scroll-mt-[var(--nav-height)] py-20 md:py-28">
-      <div className="mx-auto max-w-5xl px-6">
-        <header className="mb-14">
-          <motion.h2
-            variants={sectionHeaderVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={inViewOnce}
-            className="text-3xl md:text-4xl font-semibold text-[hsl(var(--foreground))] tracking-tight"
-          >
-            Education
-          </motion.h2>
-          <motion.p
-            variants={sectionSublineVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={inViewOnce}
-            className="mt-3 text-[hsl(var(--muted))] text-lg"
-          >
-            {education.school}
-          </motion.p>
-        </header>
+    <section id="education" className="section-block scroll-mt-[var(--nav-height)]">
+      <SectionHeading title="Education" subtitle={education.school} />
 
-        <motion.div
-          variants={sectionReveal}
-          initial="hidden"
-          whileInView="visible"
-          viewport={inViewOnce}
-          className="rounded-2xl border border-[hsl(var(--border))] bg-[hsl(var(--surface))] p-6 md:p-8 shadow-soft"
-          whileHover={{ boxShadow: "0 16px 40px -12px rgba(0,0,0,0.1)" }}
-        >
-          <p className="text-xl font-semibold text-[hsl(var(--foreground))]">
-            {education.degree}
-          </p>
-          <p className="mt-2 text-[hsl(var(--muted))]">
-            GPA {education.gpa} · {education.honors}
-          </p>
-          <h3 className="mt-6 text-sm font-semibold uppercase tracking-wider text-[hsl(var(--muted))]">
-            Relevant coursework
-          </h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {education.coursework.map((c, i) => (
-              <motion.span
-                key={c}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={inViewOnce}
-                transition={{ duration: 0.28, delay: 0.04 + i * 0.025, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-lg bg-ice border border-[hsl(var(--border))] px-3 py-1.5 text-sm font-medium text-[hsl(var(--foreground))]"
-              >
-                {c}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
+      <div className="panel">
+        <p className="font-bold">{education.degree}</p>
+        <p className="meta mt-1">
+          {education.location} · expected graduation: {education.expectedGraduation}
+        </p>
+        <p className="meta mt-1">
+          gpa: {education.gpa} · {education.honors}
+        </p>
+        <hr className="hr-thick" />
+        <p className="font-bold text-sm mb-2">relevant coursework</p>
+        <p>
+          {education.coursework.map((c, i) => (
+            <span key={c}>
+              {i > 0 && <span className="text-[hsl(var(--muted))]"> · </span>}
+              <span className="tag">{c}</span>
+            </span>
+          ))}
+        </p>
       </div>
     </section>
   );

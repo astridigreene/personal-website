@@ -2,7 +2,6 @@
 
 import { Education } from "@/components/Education";
 import { Skills } from "@/components/Skills";
-import { Resume } from "@/components/Resume";
 import { Extracurriculars } from "@/components/Extracurriculars";
 
 export function Extras() {
@@ -10,7 +9,6 @@ export function Extras() {
     <section id="involvement" className="scroll-mt-[var(--nav-height)]">
       <Education />
       <Skills />
-      <Resume />
       <Extracurriculars />
     </section>
   );
