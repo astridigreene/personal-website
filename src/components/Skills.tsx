@@ -2,9 +2,9 @@ import { skills } from "@/lib/site-data";
 import { SectionHeading } from "@/components/SectionHeading";
 
 const categories = [
-  { title: "Languages", items: skills.languages },
-  { title: "Developer Tools", items: skills.tools },
-  { title: "Interests", items: skills.interests },
+  { title: "languages", items: skills.languages },
+  { title: "developer tools", items: skills.tools },
+  { title: "interests", items: skills.interests },
 ] as const;
 
 export function Skills() {

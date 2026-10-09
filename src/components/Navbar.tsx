@@ -43,10 +43,10 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[hsl(var(--border))] bg-[hsl(215_48%_84%)] dark:bg-[hsl(var(--surface-elevated))]">
+    <header className="sticky top-0 z-50 border-b-2 border-[hsl(var(--border))] bg-[hsl(var(--ice))]">
       <nav className="flex items-center justify-between px-4 py-2">
         <ScrollLink toTop className="nav-plain font-bold text-sm">
-          {site.name.toLowerCase()}.com
+          astridigreene.com
         </ScrollLink>
 
         <div className="hidden md:flex items-center text-sm meta">

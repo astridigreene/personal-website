@@ -13,16 +13,12 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="section-block border-t-2 border-[hsl(var(--border))] bg-[hsl(215_48%_84%)] dark:bg-[hsl(var(--surface-elevated))] py-4">
+    <footer className="section-block border-t-2 border-[hsl(var(--border))] bg-[hsl(var(--surface-elevated))] py-4">
       <hr className="hr-thick" />
       <p className="text-center meta mb-3">
         (c) {year} {site.name} — built by hand, probably
       </p>
       <p className="text-center text-sm">
-        <ScrollLink sectionId="settings" className="nav-plain">
-          settings
-        </ScrollLink>
-        <span className="text-[hsl(var(--muted))]"> | </span>
         <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
           linkedin
         </a>
