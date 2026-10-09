@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 type Difficulty = "easy" | "medium" | "hard";
 
@@ -82,6 +82,12 @@ const PUZZLES: Record<Difficulty, { given: number[][]; solution: number[][] }> =
   },
 };
 
+function formatTime(total: number) {
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
 function boxOf(r: number, c: number) {
   return Math.floor(r / 3) * 3 + Math.floor(c / 3);
 }
@@ -94,6 +100,26 @@ export function SudokuGame() {
   const [selected, setSelected] = useState<[number, number] | null>(null);
   const [errors, setErrors] = useState<Set<string>>(new Set());
   const [solved, setSolved] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  // timer starts on first cell click and stops once solved
+  useEffect(() => {
+    if (!running || solved) return;
+    const id = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, [running, solved]);
+
+  const [showWin, setShowWin] = useState(false);
+
+  useEffect(() => {
+    if (!showWin) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowWin(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showWin]);
 
   const puzzle = PUZZLES[difficulty];
 
@@ -122,9 +148,10 @@ export function SudokuGame() {
         }
       }
       setErrors(errs);
-      setSolved(
-        errs.size === 0 && b.every((row, r) => row.every((v, c) => v === sol[r][c]))
-      );
+      const isSolved =
+        errs.size === 0 && b.every((row, r) => row.every((v, c) => v === sol[r][c]));
+      setSolved(isSolved);
+      setShowWin(isSolved);
     },
     []
   );
@@ -165,6 +192,8 @@ export function SudokuGame() {
     setSelected(null);
     setErrors(new Set());
     setSolved(false);
+    setSeconds(0);
+    setRunning(false);
   };
 
   const reset = () => {
@@ -172,11 +201,18 @@ export function SudokuGame() {
     setSelected(null);
     setErrors(new Set());
     setSolved(false);
+    setSeconds(0);
+    setRunning(false);
   };
 
   const givenFlat = puzzle.given.flat();
   const filledCount = board.flat().filter((v, i) => v !== 0 && givenFlat[i] === 0).length;
   const totalEmpty = givenFlat.filter((v) => v === 0).length;
+
+  // a number is "used up" once all 9 of its cells are correctly placed
+  const isNumberDone = (n: number) =>
+    board.flat().filter((v, i) => v === n && v === puzzle.solution.flat()[i])
+      .length === 9;
 
   const CELL = 32;
 
@@ -226,12 +262,16 @@ export function SudokuGame() {
             <span>{filledCount}/{totalEmpty} filled</span>
           )}
         </span>
-        <span style={{ color: "hsl(0 62% 55%)" }}>
-          {errors.size > 0 && `${errors.size} conflict${errors.size > 1 ? "s" : ""}`}
+        <span className="flex gap-3">
+          <span style={{ color: "hsl(0 62% 55%)" }}>
+            {errors.size > 0 && `${errors.size} conflict${errors.size > 1 ? "s" : ""}`}
+          </span>
+          <span aria-label="elapsed time">{formatTime(seconds)}</span>
         </span>
       </div>
 
       {/* 9x9 grid */}
+      <div style={{ position: "relative", width: "fit-content" }}>
       <div
         style={{
           display: "grid",
@@ -275,7 +315,10 @@ export function SudokuGame() {
                 tabIndex={0}
                 role="button"
                 aria-label={`r${r + 1}c${c + 1}${val ? ` = ${val}` : ""}`}
-                onClick={() => setSelected([r, c])}
+                onClick={() => {
+                  setSelected([r, c]);
+                  setRunning(true);
+                }}
                 onKeyDown={(e) => handleKeyDown(e, r, c)}
                 style={{
                   display: "flex",
@@ -301,6 +344,51 @@ export function SudokuGame() {
             );
           })
         )}
+      </div>
+
+      {/* win popup — click anywhere to dismiss */}
+      {showWin && (
+        <div
+          role="dialog"
+          aria-label="puzzle solved"
+          onClick={() => setShowWin(false)}
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "hsl(var(--background) / 0.6)",
+            cursor: "pointer",
+          }}
+        >
+          <div
+            style={{
+              background: "hsl(var(--surface-elevated))",
+              border: "3px solid hsl(var(--accent))",
+              padding: "1rem 1.5rem",
+              textAlign: "center",
+              boxShadow: "0 4px 16px hsl(0 0% 0% / 0.25)",
+            }}
+          >
+            <div
+              style={{
+                color: "hsl(var(--accent))",
+                fontWeight: 700,
+                fontSize: "1.1rem",
+              }}
+            >
+              good job!
+            </div>
+            <div className="meta mt-1" style={{ fontSize: "0.72rem" }}>
+              solved in {formatTime(seconds)}
+            </div>
+            <div className="meta mt-2" style={{ fontSize: "0.65rem", opacity: 0.7 }}>
+              [ click to close ]
+            </div>
+          </div>
+        </div>
+      )}
       </div>
 
       {/* controls */}
@@ -329,24 +417,32 @@ export function SudokuGame() {
         className="mt-2 grid grid-cols-9 gap-px"
         style={{ width: `${CELL * 9}px` }}
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-          <button
-            key={n}
-            onClick={() => {
-              if (selected) setCell(selected[0], selected[1], n);
-            }}
-            className="btn"
-            style={{
-              fontSize: "0.78rem",
-              padding: "0.25rem 0",
-              textAlign: "center",
-              borderColor: "hsl(var(--border))",
-              background: "hsl(var(--surface-elevated))",
-            }}
-          >
-            {n}
-          </button>
-        ))}
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => {
+          const done = isNumberDone(n);
+          return (
+            <button
+              key={n}
+              disabled={done}
+              aria-label={done ? `${n} (all placed)` : `${n}`}
+              onClick={() => {
+                if (selected) setCell(selected[0], selected[1], n);
+              }}
+              className="btn"
+              style={{
+                fontSize: "0.78rem",
+                padding: "0.25rem 0",
+                textAlign: "center",
+                borderColor: "hsl(var(--border))",
+                background: "hsl(var(--surface-elevated))",
+                opacity: done ? 0.25 : 1,
+                cursor: done ? "default" : "pointer",
+                transition: "opacity 0.3s",
+              }}
+            >
+              {n}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
